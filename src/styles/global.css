@@ -1,0 +1,74 @@
+.uplifted-component {
+  position: relative;
+
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+  background-color: #ffffff; /* Set the background color */
+  border-radius: 8px; /* Add rounded corners for a modern look */
+  padding: 20px; /* Add some padding for spacing *//* Add a smooth transition for the effect */
+}
+
+.job-list {
+  padding: 9rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr)); /* Adjust column width as needed */
+  grid-gap: 3rem; /* Adjust gap between grid items */
+  
+}
+
+.job-item {
+  background-color: white; /* Add background color */
+  padding: 20px; /* Add padding to grid items */
+  border-radius: 5px; /* Add border radius for rounded corners */
+
+  border-radius:1.5rem;
+}
+
+/* Media query for responsive layout */
+@media screen and (max-width: 768px) {
+  .job-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust column width for smaller screens */
+  }
+}
+
+.apply-btn {
+background-color: #54EFC4;
+    width: 100%;
+    height: 2.5rem;
+ outline: none;
+  border: none;
+    border-radius: 0.5rem;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+.referral-btn {
+    background-color: #4943DA;
+    width: 100%;
+    color:white;
+    height: 2.5rem;
+ outline: none;
+  border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+
+
+}
+ .view-button {
+    background-color: transparent;
+    color: #4943DA;
+    outline: none;
+    border: none;
+
+}
+.container {
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  height:  15rem;
+  width: 100%;
+  
+  overflow:hidden
+}
+
+a {
+text-decoration: none;
+}
