@@ -69,7 +69,6 @@ const jobBoardSlice = createSlice({
       } else {
         state.found = true;
       }
-      console.log(state.filters);
     },
   },
 
@@ -95,7 +94,7 @@ const jobBoardSlice = createSlice({
 const applyFilters = (jobs, filters) => {
   const { experience, roles, numberOfEmployees, location, minBasePay } =
     filters;
-  console.log(minBasePay);
+
   return jobs?.filter((job) => {
     return (
       (experience?.length === 0 ||
