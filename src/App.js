@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     // Fetch job listings when the component mounts
-    dispatch(fetchJobsAsync({ limit: 10, offset: 0 }));
+    dispatch(fetchJobsAsync({ limit: 10, offset: 10 }));
   }, [dispatch]);
 
   if (status === "loading") {

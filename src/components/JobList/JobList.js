@@ -1,13 +1,13 @@
-// components/JobList/JobList.js
-
 import React from "react";
 import { useSelector } from "react-redux";
-import JobListItem from "./JobListItem"; // Import JobListItem component
-import JobFilters from "../JobFilters/JobFilters"; // Import JobFilters component
+import JobListItem from "./JobListItem";
+import JobFilters from "../JobFilters/JobFilters";
 import "../../styles/global.css";
 
 function JobList() {
-  const { jobs, status, error } = useSelector((state) => state.jobBoard);
+  const { allJobs, filteredJobs, status, error } = useSelector(
+    (state) => state.jobBoard
+  );
 
   if (status === "loading") {
     return <div>Loading...</div>;
@@ -23,10 +23,12 @@ function JobList() {
       <JobFilters />
 
       <div className="job-list">
-        {jobs?.length === 0 ? (
-          <p>No jobs found.</p>
+        {allJobs?.length === 0 ? (
+          <p>No allJobs found.</p>
         ) : (
-          jobs?.map((job) => <JobListItem key={job.jdUid} job={job} />)
+          (filteredJobs.length === 0 ? allJobs : filteredJobs)?.map((job) => (
+            <JobListItem key={job.jdUid} job={job} />
+          ))
         )}
       </div>
     </div>

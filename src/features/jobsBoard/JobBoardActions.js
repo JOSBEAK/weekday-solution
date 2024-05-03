@@ -1,5 +1,3 @@
-// features/jobBoard/jobBoardActions.js
-
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchJobsAsync = createAsyncThunk(

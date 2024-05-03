@@ -1,14 +1,14 @@
-// features/jobBoard/jobBoardSlice.js
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
-  jobs: [], // Array to hold job listings
+  allJobs: [], // Array to hold all job listings fetched by the API
+  filteredJobs: [], // Array to hold filtered job listings
   filters: {
-    // Object to hold filter values
-    location: "",
-    jobType: "",
-    // Add more filter options as needed
+    experience: [],
+    roles: [],
+    numberOfEmployees: [],
+    location: [],
+    minBasePay: [],
   },
   status: "idle", // Status of the async operation (idle, loading, succeeded, failed)
   error: null, // Error message if the operation fails
@@ -43,8 +43,8 @@ export const fetchJobsAsync = createAsyncThunk(
       }
 
       const data = await response.json();
-      console.log(data);
-      return data;
+
+      return data.jdList;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -56,13 +56,14 @@ const jobBoardSlice = createSlice({
   initialState,
   reducers: {
     updateFilters(state, action) {
-      // Update filter values based on user selections
-      state.filters = {
-        ...state.filters,
-        ...action.payload,
-      };
+      state.filters = action.payload;
+
+      // Apply filters to all jobs and store the result in filteredJobs
+      state.filteredJobs = applyFilters(state.allJobs, state.filters);
+      console.log("hh", state.filteredJobs);
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobsAsync.pending, (state) => {
@@ -71,15 +72,37 @@ const jobBoardSlice = createSlice({
       })
       .addCase(fetchJobsAsync.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.jobs = action.payload.jdList; // Corrected payload access
-        console.log(action.payload);
+        state.allJobs = action.payload; // Store fetched jobs in allJobs
+        state.filteredJobs = []; // Initialize filteredJobs with an empty array
       })
       .addCase(fetchJobsAsync.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message; // Corrected error handling
+        state.error = action.error.message;
       });
   },
 });
+
+// Function to apply filters to jobs
+const applyFilters = (jobs, filters) => {
+  const { experience, roles, numberOfEmployees, location, minBasePay } =
+    filters;
+
+  return jobs?.filter((job) => {
+    return (
+      (experience?.length === 0 ||
+        parseInt(job.minExp) === parseInt(experience?.value)) &&
+      (roles?.length === 0 ||
+        roles.some((role) => role.value === job.jobRole)) &&
+      (numberOfEmployees?.length === 0 ||
+        numberOfEmployees.some((emp) => emp.value === job.numberOfEmployees)) &&
+      (location?.length === 0 ||
+        location.some((loc) => loc.value === job.location)) &&
+      (minBasePay?.length === 0 ||
+        parseInt(job.minJdSalary) >= parseInt(minBasePay.value))
+      // Add more filter conditions as needed
+    );
+  });
+};
 
 // Export actions
 export const { updateFilters } = jobBoardSlice.actions;

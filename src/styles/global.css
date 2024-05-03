@@ -1,32 +1,32 @@
 .uplifted-component {
   position: relative;
 
-  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
-  background-color: #ffffff; /* Set the background color */
-  border-radius: 8px; /* Add rounded corners for a modern look */
-  padding: 20px; /* Add some padding for spacing *//* Add a smooth transition for the effect */
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1); 
+  background-color: #ffffff;
+  border-radius: 8px; 
+  padding: 20px; 
 }
 
 .job-list {
-  padding: 9rem;
+  padding: 0rem 9rem 9rem;
+
   display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 1fr)); /* Adjust column width as needed */
-  grid-gap: 3rem; /* Adjust gap between grid items */
+  grid-template-columns: repeat(3, minmax(250px, 1fr)); 
+  grid-gap: 3rem; 
   
 }
 
 .job-item {
-  background-color: white; /* Add background color */
-  padding: 20px; /* Add padding to grid items */
-  border-radius: 5px; /* Add border radius for rounded corners */
+  background-color: white; 
+  padding: 20px;
+  border-radius: 5px; 
 
   border-radius:1.5rem;
 }
 
-/* Media query for responsive layout */
 @media screen and (max-width: 768px) {
   .job-list {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust column width for smaller screens */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
   }
 }
 
@@ -71,4 +71,26 @@ background-color: #54EFC4;
 
 a {
 text-decoration: none;
+}
+.Filters {
+    padding: 0 9rem 5rem;
+    display: flex;
+
+
+    flex-wrap: wrap;
+}
+#roles {
+    margin-left: 0.5rem;
+}
+#location {
+    margin-left: 0.5rem;
+}
+#pay {
+    margin-left: 0.5rem;
+}
+#experience {
+    margin-left: 0.5rem;
+}
+#total-strength {
+    margin-left: 0.5rem;
 }

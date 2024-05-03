@@ -1,5 +1,3 @@
-// components/JobList/JobListItem.js
-
 import "../../styles/global.css";
 
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
