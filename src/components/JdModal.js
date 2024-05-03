@@ -9,8 +9,9 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
   bgcolor: "background.paper",
+  width: "70%", // Adjust width to 90% for responsiveness
+  maxWidth: 400,
   boxShadow: 24,
   p: 4,
   outline: "none",
@@ -39,6 +40,7 @@ export default function JdModal({ jobDescription, open, handleClose }) {
           <b>About us</b>
 
           <p>{jobDescription}</p>
+          <button onClick={handleCloseModal}>Close</button>
         </Box>
       </Modal>
     </div>
