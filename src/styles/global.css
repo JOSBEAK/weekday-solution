@@ -8,12 +8,16 @@
 }
 .job-role{
    font-size: large;
-    
 }
+.modal-description {
+  height: 20vh;
+  overflow: scroll;
+}
+
 .company-name{
     font-weight: bold;
     font-size: medium;
-color: gray;
+    color: gray;
 }
 .job-location {
 font-size:small;
@@ -21,18 +25,15 @@ font-weight: 600;
 }
 .job-list {
   padding: 0rem 9rem 9rem;
-
   display: grid;
   grid-template-columns: repeat(3, minmax(250px, 1fr)); 
   grid-gap: 3rem; 
-  
 }
 
 .job-item {
   background-color: white; 
   padding: 20px;
   border-radius: 5px; 
-
   border-radius:1.5rem;
 }
 .Filters {

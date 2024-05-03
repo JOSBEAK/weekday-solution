@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+
 import Modal from "@mui/material/Modal";
 
 const style = {
@@ -10,7 +9,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
-  width: "70%", // Adjust width to 90% for responsiveness
+  width: "70%",
   maxWidth: 400,
   boxShadow: 24,
   p: 4,
@@ -23,7 +22,7 @@ export default function JdModal({ jobDescription, open, handleClose }) {
   };
 
   return (
-    <div>
+    <div className="modal">
       <Modal
         open={open}
         onClose={handleCloseModal}
@@ -37,9 +36,11 @@ export default function JdModal({ jobDescription, open, handleClose }) {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. A veniam
             quod mollitia dolor voluptate aperiam libero minima delectus et
           </p>
-          <b>About us</b>
+          <div className="modal-description">
+            <b>About us</b>
 
-          <p>{jobDescription}</p>
+            <p>{jobDescription}</p>
+          </div>
           <button onClick={handleCloseModal}>Close</button>
         </Box>
       </Modal>
