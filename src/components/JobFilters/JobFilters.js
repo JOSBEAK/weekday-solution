@@ -88,7 +88,7 @@ function JobFilters() {
   const handleChange = (name, newSelectedOptions) => {
     setSelectedOptions((prevState) => ({
       ...prevState,
-      [name]: newSelectedOptions,
+      [name]: newSelectedOptions ? newSelectedOptions : [],
     }));
   };
 
@@ -119,6 +119,7 @@ function JobFilters() {
       <div id="experience">
         <b>Experience</b>
         <Select
+          isClearable
           placeholder="Experience"
           value={selectedOptions.experience}
           options={experience}
@@ -142,6 +143,7 @@ function JobFilters() {
       <div id="pay">
         <b>Min. Base Pay</b>
         <Select
+          isClearable
           placeholder="Min. Base Pay"
           value={selectedOptions.minBasePay}
           options={minBasePay}

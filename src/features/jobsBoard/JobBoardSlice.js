@@ -10,6 +10,7 @@ const initialState = {
     location: [],
     minBasePay: [],
   },
+  found: true,
   status: "idle", // Status of the async operation (idle, loading, succeeded, failed)
   error: null, // Error message if the operation fails
 };
@@ -60,6 +61,14 @@ const jobBoardSlice = createSlice({
 
       // Apply filters to all jobs and store the result in filteredJobs
       state.filteredJobs = applyFilters(state.allJobs, state.filters);
+      const filtersWithValues = Object.values(state.filters).filter(
+        (field) => field?.length > 0
+      );
+      if (filtersWithValues.length > 0 && state.filteredJobs.length === 0) {
+        state.found = false;
+      } else {
+        state.found = true;
+      }
       console.log(state.filters);
     },
   },
@@ -86,7 +95,7 @@ const jobBoardSlice = createSlice({
 const applyFilters = (jobs, filters) => {
   const { experience, roles, numberOfEmployees, location, minBasePay } =
     filters;
-
+  console.log(minBasePay);
   return jobs?.filter((job) => {
     return (
       (experience?.length === 0 ||

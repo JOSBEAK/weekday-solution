@@ -1,8 +1,13 @@
+import { useState } from "react";
 import "../../styles/global.css";
 
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
+import JdModal from "../JdModal";
 
 function JobListItem({ job }) {
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpen = () => setOpenModal(true);
+  const handleClose = () => setOpenModal(false);
   const renderExpectedSalary = () => {
     if (job.minJdSalary !== null && job.maxJdSalary !== null) {
       return `$${job.minJdSalary}k - ${job.maxJdSalary}k ${job.salaryCurrencyCode} ✅`;
@@ -12,9 +17,13 @@ function JobListItem({ job }) {
   };
   return (
     <div className="job-item uplifted-component">
-      <h3>{job.jobRole.charAt(0).toUpperCase() + job.jobRole.slice(1)}</h3>
-      <a href={job.jdLink}>Weekday</a>
-      <p>
+      <a href={job.jdLink} className="company-name">
+        Weekday
+      </a>
+      <h3 className="job-role">
+        {job.jobRole.charAt(0).toUpperCase() + job.jobRole.slice(1)}
+      </h3>
+      <p className="job-location">
         {job.location
           ? job.location.charAt(0).toUpperCase() + job.location.slice(1)
           : "N/A"}
@@ -25,21 +34,21 @@ function JobListItem({ job }) {
         <div className="description">
           <div className="container">
             <strong>About Company</strong>
-            <p>
-              <b>About Us</b>
-            </p>
 
             <p>{job.jobDetailsFromCompany}</p>
           </div>
           <center>
-            <a href={job.jdLink}>View Job</a>
+            <button className="btn-description" onClick={handleOpen}>
+              Show more
+            </button>
           </center>
         </div>
       ) : (
         <p>N/A</p>
       )}
-      <div>
-        Minimum Experience: {job.minExp ? <p>{job.minExp}</p> : <p>N/A</p>}
+      <div className="job-experience">
+        <h5> Minimum Experience:</h5>
+        <p> {job.minExp ? `${job.minExp} years ` : "N/A"}</p>
       </div>
 
       <button className="apply-btn">
@@ -47,6 +56,11 @@ function JobListItem({ job }) {
         Easy apply
       </button>
       <button className="referral-btn">Unlock referral asks</button>
+      <JdModal
+        jobDescription={job.jobDetailsFromCompany}
+        open={openModal}
+        handleClose={handleClose}
+      />
     </div>
   );
 }

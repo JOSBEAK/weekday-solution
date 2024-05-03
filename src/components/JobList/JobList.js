@@ -6,11 +6,12 @@ import "../../styles/global.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchJobsAsync } from "../../features/jobsBoard/JobBoardSlice";
-
+import { ClipLoader } from "react-spinners";
 import "../../styles/global.css";
+import NotFound from "../NotFound";
 
 function JobList() {
-  const { allJobs, filteredJobs, status, error } = useSelector(
+  const { allJobs, filteredJobs, status, error, found } = useSelector(
     (state) => state.jobBoard
   );
   const dispatch = useDispatch();
@@ -47,11 +48,16 @@ function JobList() {
 
   return (
     <div>
-      <h2>Job Listings</h2>
+      <div>
+        <h2>Job Listings</h2>
+      </div>
+
       <JobFilters />
 
       <div className="job-list">
-        {allJobs.length === 0 ? (
+        {found === false ? (
+          <NotFound />
+        ) : allJobs.length === 0 ? (
           <p>No jobs found.</p>
         ) : (
           <>
@@ -63,6 +69,9 @@ function JobList() {
                   <JobListItem key={index} job={job} />
                 ))}
             <div ref={observerTarget}></div>
+            {status === "loading" && (
+              <ClipLoader loading={true} size={35} color={"#123abc"} />
+            )}
           </>
         )}
       </div>
