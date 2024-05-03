@@ -22,7 +22,7 @@ export const fetchJobsAsync = createAsyncThunk(
       myHeaders.append("Content-Type", "application/json");
 
       const raw = JSON.stringify({
-        limit: 50,
+        limit: limit,
         offset: offset,
       });
 
@@ -60,7 +60,7 @@ const jobBoardSlice = createSlice({
 
       // Apply filters to all jobs and store the result in filteredJobs
       state.filteredJobs = applyFilters(state.allJobs, state.filters);
-      console.log("hh", state.filteredJobs);
+      console.log(state.filters);
     },
   },
 
@@ -72,8 +72,8 @@ const jobBoardSlice = createSlice({
       })
       .addCase(fetchJobsAsync.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.allJobs = action.payload; // Store fetched jobs in allJobs
-        state.filteredJobs = []; // Initialize filteredJobs with an empty array
+        state.allJobs = [...state.allJobs, ...action.payload];
+        state.filteredJobs = applyFilters(state.allJobs, state.filters);
       })
       .addCase(fetchJobsAsync.rejected, (state, action) => {
         state.status = "failed";

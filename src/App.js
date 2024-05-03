@@ -11,12 +11,8 @@ function App() {
 
   useEffect(() => {
     // Fetch job listings when the component mounts
-    dispatch(fetchJobsAsync({ limit: 10, offset: 10 }));
+    dispatch(fetchJobsAsync({ limit: 9, offset: 9 }));
   }, [dispatch]);
-
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
 
   if (status === "failed") {
     return <div>Error: {error}</div>;

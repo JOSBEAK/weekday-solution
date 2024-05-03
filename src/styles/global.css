@@ -23,13 +23,50 @@
 
   border-radius:1.5rem;
 }
+.Filters {
+    padding: 0 9rem 5rem;
+    display: flex;
 
+
+    flex-wrap: wrap;
+}
 @media screen and (max-width: 768px) {
   .job-list {
+    padding: 0 1rem 1rem;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .job-item{
+    padding: 1rem;
+    width: 100vw;
+  }
+  .Filters{
+    padding:0 1rem 1rem;
+    width: 90%;
+justify-content: flex-start;
   }
 }
-
+@media screen and (max-width: 820px) {
+  .job-list {
+    padding: 0 1rem 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .job-item{
+    padding: 1rem;
+    width: 100vw;
+  }
+  .Filters{
+    padding:0 1rem 1rem;
+    width: 90%;
+justify-content: flex-start;
+  }
+}
+p {
+    padding: 0;
+}
 .apply-btn {
 background-color: #54EFC4;
     width: 100%;
@@ -72,13 +109,7 @@ background-color: #54EFC4;
 a {
 text-decoration: none;
 }
-.Filters {
-    padding: 0 9rem 5rem;
-    display: flex;
 
-
-    flex-wrap: wrap;
-}
 #roles {
     margin-left: 0.5rem;
 }

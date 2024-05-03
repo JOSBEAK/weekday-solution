@@ -12,11 +12,14 @@ function JobListItem({ job }) {
   };
   return (
     <div className="job-item uplifted-component">
-      <h3>{job.jobRole}</h3>
-
+      <h3>{job.jobRole.charAt(0).toUpperCase() + job.jobRole.slice(1)}</h3>
       <a href={job.jdLink}>Weekday</a>
+      <p>
+        {job.location
+          ? job.location.charAt(0).toUpperCase() + job.location.slice(1)
+          : "N/A"}
+      </p>
 
-      {job.location ? <p>{job.location}</p> : <p>N/A</p>}
       <p>Expected Salary: {renderExpectedSalary()} </p>
       {job.jobDetailsFromCompany ? (
         <div className="description">
@@ -35,7 +38,9 @@ function JobListItem({ job }) {
       ) : (
         <p>N/A</p>
       )}
-      <p>Minimum Experience: {job.minExp ? <p>{job.minExp}</p> : <p>N/A</p>}</p>
+      <div>
+        Minimum Experience: {job.minExp ? <p>{job.minExp}</p> : <p>N/A</p>}
+      </div>
 
       <button className="apply-btn">
         <ElectricBoltIcon style={{ color: "yellow", fontSize: "medium" }} />
