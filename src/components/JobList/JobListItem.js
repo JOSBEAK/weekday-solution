@@ -17,18 +17,24 @@ function JobListItem({ job }) {
   };
   return (
     <div className="job-item uplifted-component">
-      <a href={job.jdLink} className="company-name">
-        Weekday
-      </a>
-      <h3 className="job-role">
-        {job.jobRole.charAt(0).toUpperCase() + job.jobRole.slice(1)}
-      </h3>
-      <p className="job-location">
-        {job.location
-          ? job.location.charAt(0).toUpperCase() + job.location.slice(1)
-          : "N/A"}
-      </p>
-
+      <div className="company-header">
+        <div>
+          <img src={job.logoUrl} alt="logo" />
+        </div>
+        <div className="job-info">
+          <a href={job.jdLink} className="company-name">
+            {job.companyName}
+          </a>
+          <h3 className="job-role">
+            {job.jobRole.charAt(0).toUpperCase() + job.jobRole.slice(1)}
+          </h3>
+          <p className="job-location">
+            {job.location
+              ? job.location.charAt(0).toUpperCase() + job.location.slice(1)
+              : "N/A"}
+          </p>
+        </div>
+      </div>
       <p>Expected Salary: {renderExpectedSalary()} </p>
       {job.jobDetailsFromCompany ? (
         <div className="description">
