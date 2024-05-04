@@ -76,6 +76,19 @@ font-weight: 600;
 h2{
     padding: 0 9rem 0;
 }
+#search {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+}
+#search input {
+  height: 2rem;
+  border: rgb(180, 178, 178) solid 1px;
+  border-radius: 0.2rem;
+  font-weight: 500;
+  font-size: medium;
+  font-family: 'Times New Roman', Times, serif;
+}
 @media screen and (max-width: 768px) {
   .job-list {
     padding: 0 1rem 1rem;
@@ -124,6 +137,7 @@ justify-content: flex-start;
   width: 20vw;
 }
 }
+
 p {
     margin-top: 0;
 }

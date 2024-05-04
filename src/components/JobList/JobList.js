@@ -11,9 +11,11 @@ import "../../styles/global.css";
 import NotFound from "../NotFound";
 
 function JobList() {
-  const { allJobs, filteredJobs, status, error, found } = useSelector(
-    (state) => state.jobBoard
-  );
+  const { allJobs, filteredJobs, status, error, found, searchQuery } =
+    useSelector((state) => state.jobBoard);
+
+  // Filter job listings based on the search query
+
   const dispatch = useDispatch();
   const observerTarget = useRef(null);
 
@@ -46,6 +48,25 @@ function JobList() {
     return <div>Error: {error}</div>;
   }
 
+  const jobList = filteredJobs.length === 0 ? allJobs : filteredJobs;
+
+  const jobContainsSearchQuery = (job, query) => {
+    const jobRoleLower = job.jobRole.toLowerCase();
+    const jobDetailsLower = job.jobDetailsFromCompany.toLowerCase();
+    const companyNameLower = job.companyName.toLowerCase();
+    const locationLower = job.location.toLowerCase();
+
+    return (
+      jobRoleLower.includes(query.toLowerCase()) ||
+      jobDetailsLower.includes(query.toLowerCase()) ||
+      companyNameLower.includes(query.toLowerCase()) ||
+      locationLower.includes(query.toLowerCase())
+    );
+  };
+  const filteredJobsBySearch = jobList.filter((job) =>
+    jobContainsSearchQuery(job, searchQuery)
+  );
+
   return (
     <div>
       <div>
@@ -61,13 +82,9 @@ function JobList() {
           <p>No jobs found.</p>
         ) : (
           <>
-            {filteredJobs.length === 0
-              ? allJobs.map((job, index) => (
-                  <JobListItem key={index} job={job} />
-                ))
-              : filteredJobs.map((job, index) => (
-                  <JobListItem key={index} job={job} />
-                ))}
+            {filteredJobsBySearch.map((job, index) => (
+              <JobListItem key={index} job={job} />
+            ))}
             <div ref={observerTarget}></div>
             {status === "loading" && (
               <ClipLoader loading={true} size={35} color={"#123abc"} />

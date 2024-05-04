@@ -11,6 +11,7 @@ const initialState = {
     minBasePay: [],
   },
   found: true,
+  searchQuery: "",
   status: "idle", // Status of the async operation (idle, loading, succeeded, failed)
   error: null, // Error message if the operation fails
 };
@@ -56,6 +57,9 @@ const jobBoardSlice = createSlice({
   name: "jobBoard",
   initialState,
   reducers: {
+    updateSearchQuery(state, action) {
+      state.searchQuery = action.payload; // Update the search query state
+    },
     updateFilters(state, action) {
       state.filters = action.payload;
 
@@ -113,7 +117,7 @@ const applyFilters = (jobs, filters) => {
 };
 
 // Export actions
-export const { updateFilters } = jobBoardSlice.actions;
+export const { updateFilters, updateSearchQuery } = jobBoardSlice.actions;
 
 // Export reducer
 export default jobBoardSlice.reducer;

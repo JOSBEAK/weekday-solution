@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { useDispatch, useSelector } from "react-redux";
-import { updateFilters } from "./../../features/jobsBoard/JobBoardSlice";
+import {
+  updateFilters,
+  updateSearchQuery,
+} from "./../../features/jobsBoard/JobBoardSlice";
 
 function JobFilters() {
   const allJobs = useSelector((state) => state.jobBoard.allJobs);
@@ -92,6 +95,12 @@ function JobFilters() {
     }));
   };
 
+  // Add a function to handle search input change
+  const handleSearchChange = (event) => {
+    const searchQuery = event.target.value;
+    dispatch(updateSearchQuery(searchQuery)); // Dispatch action to update search query state
+  };
+
   return (
     <div className="Filters">
       <div id="roles">
@@ -151,6 +160,10 @@ function JobFilters() {
             handleChange("minBasePay", selectedOptions)
           }
         />
+      </div>
+      <div id="search">
+        <b>Search ...</b>
+        <input placeholder="Search Jobs" onChange={handleSearchChange}></input>
       </div>
     </div>
   );
