@@ -4,7 +4,7 @@
 - Browse through the bunch of job postings.
 - Filter them out as per your requirements and expectations
 
-
+### Access the app from here : https://weekday-solution.vercel.app/
 
 ## Getting Started with Installation of Dependencies 
 - Clone the repository
